@@ -1,0 +1,163 @@
+sudo su -
+pw : amsgit
+folder : cd /home/amsgit/jarvis_dev/
+pip install flask-mysql
+File read/edit : vim app.py
+run : python app.py
+export https_proxy="https://703432:Bhabana%40may@proxy.cognizant.com:6050"
+export http_proxy="http://703432:Bhabana%40may@proxy.cognizant.com:6050"
+
+
+inetcpl.cpl -- proxy shortcut run in command line
+               
+columns : | brand_id | brand_name      | cts_poc   | ams_poc   | source_channel | brand_contact_name1 |
+ brand_contact_number1 | brand_email_id1 | brand_contact_name2 | brand_contact_number2 | brand_email_id2 | 
+ brand_contact_name3 | brand_contact_number3 | brand_email_id3 | pitch_date1_proposed_date | pitch_date1_proposed_time 
+ | pitch_date1_actual_date | pitch_date1_sub_issue | pitch_date2_proposed_date | pitch_date2_proposed_time |
+ pitch_date2_actual_date | pitch_date2_sub_issue | training_date1_proposed_date | training_date1_proposed_time | 
+ training_date1_actual_date | training_date1_sub_issue | training_date2_proposed_date | training_date2_proposed_time 
+ | training_date2_actual_date | training_date2_sub_issue | training_date3_proposed_date | training_date3_proposed_time 
+ | training_date3_actual_date | training_date3_sub_issue | training_date4_proposed_date | training_date4_proposed_time | 
+ training_date4_actual_date | training_date4_sub_issue | training_date5_proposed_date | training_date5_proposed_time | 
+ training_date5_actual_date | training_date5_sub_issue | brand_store_creation_proposed_date | brand_store_creation_actual_date | 
+ brand_store_creation_sub_issue | brand_store_apporval_proposed_date | brand_store_approval_actual_date | 
+ brand_store_approval_sub_issue | brand_store_mapped_proposed_date | brand_store_mapped_actual_date | additional_issue_sub_issue | associate_name | status |
+              
+gunicorn --certfile amsjarvis.cognizant.com.crt --keyfile amsjarvis.cognizant.com.key --bind 0.0.0.0:443 app:app --error-logfile /home/s488774/jarvis/stderr.log --timeout 300 --threads 5
+
+sudo chmod -R 777 /var/DirectoryName
+
+LOAD DATA LOCAL INFILE "/home/s488774/jarvis/oob_prod_final.csv" INTO TABLE oobtrackerdb.oobtracker FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n';
+
+LOAD DATA LOCAL INFILE "/home/s488774/data/mdmdata/MDM_Bulk_upload_02042020.csv" INTO TABLE brandmdmdb.brandmdm FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n';
+
+SELECT * FROM brandmdm INTO OUTFILE '/var/lib/mysql-files/mdmdata.csv' FIELDS TERMINATED BY ',' ENCLOSED BY '"' LINES TERMINATED BY '\n';
+
+LOAD DATA LOCAL INFILE "/home/s488774/brandmdmfinal.csv" INTO TABLE jarvisdevdb.brandmdm FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n';
+
+LOAD DATA LOCAL INFILE "/home/s488774/data/Mass_Engagement_Mdm_Data.csv" INTO TABLE jarvisdevdb.brandmdm FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n';
+LOAD DATA LOCAL INFILE "/home/s488774/data/MDM_Mass_Engagement_Data.csv" INTO TABLE brandmdmdb.brandmdm FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n';
+
+SELECT create_time FROM TABLES WHERE table_schema = 'jarvisdevdb' AND table_name = 'oobtracker'; 
+
+SELECT create_time FROM INFORMATION_SCHEMA.TABLES
+  WHERE table_schema = 'jarvisdevdb'
+  AND table_name = 'oobtracker'
+              
+create table brandstoretracker(brand_id varchar(40),brand_name varchar(40),cts_poc varchar(40),ams_poc varchar(40),source_channel varchar(40),brand_contact_name1 varchar(40),
+brand_contact_number1 varchar(40),brand_email_id1 varchar(40),brand_contact_name2 varchar(40),brand_contact_number2 varchar(40),brand_email_id2 varchar(40),brand_contact_name3 varchar(40),
+brand_contact_number3 varchar(40),brand_email_id3 varchar(40),pitch_date1_proposed_date varchar(40),pitch_date1_proposed_time varchar(40),pitch_date1_actual_date varchar(40),pitch_date1_sub_issue varchar(40),
+pitch_date2_proposed_date varchar(40),pitch_date2_proposed_time varchar(40),pitch_date2_actual_date varchar(40),pitch_date2_sub_issue varchar(40),training_date1_proposed_date varchar(40),
+training_date1_proposed_time varchar(40),training_date1_actual_date varchar(40),training_date1_sub_issue varchar(40),training_date2_proposed_date varchar(40),
+training_date2_proposed_time varchar(40),training_date2_actual_date varchar(40),training_date2_sub_issue varchar(40),
+              
+update dailystatustracker set createdby = 'Aishwarya Gandhi H' where date = '07-17-2019 05:58:51' and brandid = 'test';
+
+delete from dailystatustracker where brandid = 'test' and createdby = 'NULL';
+
+Taking backup quaries:
+
+mysqldump -u root -p brandmdmdb brandmdm > /home/s488774/data/mdmdata/brandmdm.sql
+ 
+mysqldump -u root -p dstdb dailystatustracker > /home/s488774/data/dstdata/dst.sql
+
+mysqldump -u root -p oobdb oobtracker > /home/s488774/data/oob.sql
+
+mysqldump -u root -p bstdb brandstoretracker > /home/s488774/data/bst.sql
+
+mysqldump -u root -p qualityformdb growthqualityform > /home/s488774/data/growthqualityform.sql
+
+mysqldump -u root -p qualityformdb brandstorequalityform > /home/s488774/data/brandstorequalityform.sql
+
+mysqldump -u root -p qualityformdb developmentqualityform > /home/s488774/data/developmentqualityform.sql
+
+mysqldump -u root -p qualityformdb massengagementqualityform > /home/s488774/data/massengagementqualityform.sql
+
+mysqldump -u root -p qualityformdb selleradvertisingqualityform > /home/s488774/data/selleradvertisingqualityform.sql
+
+mysqldump -u root -p jarvis associates > /home/s488774/data/associates.sql
+
+mysqldump -u root -p acquistiondb acquistionteamform > /home/s488774/data/acquistionteamform.sql
+
+restoring older data query : 
+
+mysql -u root -p brandmdmdb < /home/s488774/data/mdmdata/brandmdm.sql
+
+mysql -u root -p dstdb < /home/s488774/data/dstdata/dst.sql
+
+mysql -u root -p oobdb < /home/s488774/data/oob.sql
+
+mysql -u root -p bstdb < /home/s488774/data/bst.sql
+
+mysql -u root -p qualityformdb < /home/s488774/data/growthqualityform.sql
+
+create table brandstorequalityform(entry_date varchar(40),entity_id varchar(40),brand_name varchar(40),
+store_submission_date varchar(40),atleast_2_pages_under_home_page varchar(20),atleast_1_product_grid_on_each_page varchar(20),
+use_3_different_tile_types_on_home_page varchar(20),top_2_widgets_to_be_clickable varchar(20),cta_on_image_tiles_if_actionable varchar(20),
+use_of_mobile_optimization_feature_for_image_tiles varchar(20),rejection_count varchar(20));
+
+INSERT INTO brandstorequalityform (entry_date, entity_id, brand_name, store_submission_date, atleast_2_pages_under_home_page, atleast_1_product_grid_on_each_page,use_3_different_tile_types_on_home_page,top_2_widgets_to_be_clickable,cta_on_image_tiles_if_actionable,use_of_mobile_optimization_feature_for_image_tiles,rejection_count)
+VALUES ('7/24/2019','test', 't1', '7/24/2019', 'Yes', 'No','Yes','No','Yes','Yes','5');
+
+insert into associates (associateid, associatename, role, teamname,email_id) values ('857589', 'Stuti Singh Baghel', 'Senior Process Executive', 'Development','StutiSingh.Baghel@cognizant.com');
+
+update brandstorequalityform set brand_name ="Riversong" where entity_id ='ENTITY1DBACUH70TI4W';
+
+ALTER TABLE associates ADD OTP varchar(255);
+
+ 
+ create table developmentqualityform(date varchar(40),agent_name varchar(40),brand_id varchar(40),brand_name varchar(40),is_brand_active varchar(40),k15_spent_in_m0m2_period varchar(40),creation_of_sp_manual varchar(40),keywords_20 varchar(40),lms_quiz varchar(40),touched_account_after_14_days varchar(40),no_active_sponsor_camp_1inrspend_perweeklast4week varchar(40),forgot_to_share_wbr_mbr_periodic_basis varchar(40),forgot_share_product_updates_brand_poc varchar(40),nt_addrs_rqsts_explicit_implicit_qns_rqsts_mail varchar(40),used_informal_casual_language_inmail varchar(40),nt_use_client_stndrd_templt_applicable varchar(40),forgot_to_add_attmts_responding_onmail varchar(40),share_proforma_invoice_on_brand_request varchar(40),nt_followed_oob_sop_procedure varchar(40),nt_fctr_in_advertiser_restns_applicable_policy varchar(40),nt_addrs_rqsts_explicit_implicit_qns_rqsts varchar(40),used_informal_language_inmail_phone varchar(40),incorct_mislead_informn_lead_confusion varchar(40),nonreliable_datasource_giving_recommendation_benchmark varchar(40),share_newexisting_campaign_report_with_brand_poc varchar(40),forgot_toupdate_comments_dsttool varchar(40),incorrect_incomplete_update_amazon_mdm varchar(40),forgot_to_update_the_oob_tracker varchar(40),incorporate_changes_in_ams_portal_instead_drona varchar(40));
+ 
+ 
+ create table selleradvertisingqualityform(date varchar(40),agent_name varchar(40),brand_id varchar(40),brand_name varchar(40),is_brand_active varchar(40),brand_acos__is_greater_than_3_months_average_acos varchar(40),budget_under_over_utilized_nofollow varchar(40),agent_touched_the_account_after_14_days varchar(40),no_active_sponsor_campaign_min_1inr_spend_week varchar(40),forgot_to_share_wbr_or_mbr_on_periodic_basis varchar(40),accountmanager_disucss_impo_product_features varchar(40),forgot_share_product_updates_brand_poc varchar(40),nt_addrs_rqsts_explicit_implicit_qns_rqsts_mail varchar(40),not_use_the_clientorstandard_template_wherever_applicable varchar(40),agent_forgot_to_add_attachments_while_responding_on_email varchar(40),no_factor_advertiser_restrictions varchar(40),used_informal_or_casual_language_in_email_or_call varchar(40),provided_incorrect_or_misleading_info_lead_to_confusion varchar(40),used_nonreliable_data_source_giving_recommendations varchar(40),ensure_all_mails_toresponded_in1business_day varchar(40),follow_optimization_or_seller_request_within_1busday varchar(40),toshare_new_or_existing_campaign_report_with_seller_poc varchar(40),agent_forgot_to_update_the_comments_in_dst_tool varchar(40),incorrec_or_incomplete_update_amz_mdm_or_sharepoint varchar(40),incorporate_changes_in_ams_portal_instead_drona varchar(40));
+ 
+ create table massengagementqualityform(date varchar(40),agent_name varchar(40),brand_id varchar(40),brand_name varchar(40),is_brand_active varchar(40),agent_touched_the_account_after_14_days varchar(40),agent_forgot_to_share_wbr_or_mbr_on_periodic_basis varchar(40),agent_forgot_to_share_product_updates_with_brand_poc varchar(40),not_address_the_requestors_explicit_implicit_qns_or_rqsts varchar(40),agent_forgot_to_add_attachments_while_responding_on_email varchar(40),agent_to_share_the_proforma_invoice_on_brand_request varchar(40),used_informal_or_casual_language_in_mail_or_call varchar(40),provided_incorrect_or_misleading_info_lead_to_confusion varchar(40),used_nonreliable_data_source_giving_recommendationsorbenchmarks varchar(40),to_share_new_or_existing_campaign_report_with_poc varchar(40),agent_forgot_to_update_the_comments_in_dst_tool varchar(40),incorrec_or_incomplete_update_amz_mdm_or_sharepoint varchar(40),incorporate_changes_in_ams_portal_instead_drona varchar(40));
+ 
+
+ 
+ ping smtp.office365.com
+ 
+ telnet smtp.office365.com 587
+ 
+  color: grey;
+  font-size: 12px;
+  width: 100%;
+  font-size: 14px;
+  font-weight:bold;
+  color: black;
+ 
+ 
+myqldump -u root -p brandmdmdb brandmdm > /home/amsgit/data/mdmdata/brandmdm.sql
+
+mysqlCT5!
+
+mysqldump -u root -p dstdb dailystatustracker > /home/amsgit/data/dstdata/dst.sql
+
+mysqldump -u root -p oobdb oobtracker > /home/amsgit/data/oob.sql
+
+mysqldump -u root -p bstdb brandstoretracker > /home/amsgit/data/bst.sql
+
+mysqldump -u root -p qualityformdb growthqualityform > /home/amsgit/data/growthqualityform.sql
+
+mysqldump -u root -p qualityformdb brandstorequalityform > /home/amsgit/data/brandstorequalityform.sql
+
+mysqldump -u root -p qualityformdb developmentqualityform > /home/amsgit/data/developmentqualityform.sql
+
+mysqldump -u root -p qualityformdb massengagementqualityform > /home/amsgit/data/massengagementqualityform.sql
+
+mysqldump -u root -p qualityformdb selleradvertisingqualityform > /home/amsgit/data/selleradvertisingqualityform.sql
+
+mysqldump -u root -p jarvis associates > /home/amsgit/data/associates.sql
+
+mysqldump -u root -p -mysqlCT5! jarvis associates > /home/amsgit/data/associates.sql
+
+ALTER TABLE brandmdm ADD number_of_sub_brands varchar(20);
+ALTER TABLE brandmdm ADD sub_brand_name varchar(20);
+ALTER TABLE brandmdm ADD reallocation_date varchar(20);
+ALTER TABLE brandmdm ADD brand_type varchar(20);
+
+
+create table acquistionteamform(amazonpoc varchar(40),brandid varchar(40),brandname varchar(40),category varchar(40),contactpointname1 varchar(40),contactpointname2 varchar(40),contactpointname3 varchar(40),contact1 varchar(40),contact2 varchar(40),contact3 varchar(40),contactemailid1 varchar(40),contactemailid2 varchar(40),contactemailid3 varchar(40),appointmentcalldate varchar(40),appointmentcallstatus varchar(40),pitchingdate varchar(40),pitchingstatus varchar(40),registrationdate varchar(40),registrationstatus varchar(40),paymentdate varchar(40),paymentstatus varchar(20),launchdate varchar(40),launchstatus varchar(40),rechargeamount varchar(40),followupfor varchar(40),followupdate varchar(40),followuptime varchar(40),developmentteamPOC varchar(40),handoverdate varchar(40),casenotes varchar(40),date varchar(40),status varchar(40),createdby varchar(40));
+
+SELECT * FROM brandmdm INTO OUTFILE '/var/lib/mysql-files/mdmdata020420202.csv' FIELDS TERMINATED BY ',' ENCLOSED BY '"' LINES TERMINATED BY '\n';
+
